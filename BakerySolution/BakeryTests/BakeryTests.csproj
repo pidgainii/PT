@@ -13,8 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bakery.Data\Bakery.Data.csproj" />
-    <ProjectReference Include="..\Bakery.Logic\Bakery.Logic.csproj" />
+    <ProjectReference Include="..\BakeryLibrary1\BakeryLibrary1.csproj" />
   </ItemGroup>
 
   <ItemGroup>
