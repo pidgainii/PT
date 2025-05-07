@@ -8,7 +8,7 @@ using Bakery.Data.Interfaces;
 
 namespace Bakery.Data.Entities
 {
-    public class User : IUser
+    internal class User : IUser
     {
         public Guid Id { get; private set; }
         public string Name { get; set; }

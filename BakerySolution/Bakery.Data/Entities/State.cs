@@ -8,7 +8,7 @@ using Bakery.Data.Interfaces;
 
 namespace Bakery.Data.Entities
 {
-    public class State : IState
+    internal class State : IState
     {
         public Guid Id { get; private set; }
         public string Description { get; set; }

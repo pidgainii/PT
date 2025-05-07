@@ -8,7 +8,7 @@ using Bakery.Data.Interfaces;
 
 namespace Bakery.Data.Entities
 {
-    public class Catalog : ICatalog
+    internal class Catalog : ICatalog
     {
         public Guid Id { get; private set; }
         public string Name { get; set; }

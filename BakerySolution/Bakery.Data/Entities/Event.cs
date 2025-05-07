@@ -8,7 +8,7 @@ using Bakery.Data.Interfaces;
 
 namespace Bakery.Data.Entities
 {
-    public class Event : IEvent
+    internal class Event : IEvent
     {
         public Guid Id { get; private set; }
         public string Type { get; set; }
