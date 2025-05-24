@@ -4,22 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Bakery.Data.Entities;
 using Bakery.Data.Interfaces;
-
+using Bakery.Data.Entities;
+using Bakery.Data.Factories;
 
 namespace Bakery.TestData
 {
     public static class TestDataGenerator
     {
-        // Generate test Users
         public static List<IUser> CreateTestUsers()
         {
             return new List<IUser>
             {
-                new User("Alice", "Customer"),
-                new User("Bob", "Staff"),
-                new User("Charlie", "Supplier")
+                UserFactory.Create("Joe", "baker"),
+                UserFactory.Create("Pedro Sanchez", "baker"),
+                UserFactory.Create("Alvise", "baker")
             };
         }
 
@@ -28,20 +27,19 @@ namespace Bakery.TestData
         {
             return new List<ICatalog>
             {
-                new Catalog("Croissant", "Buttery French croissant"),
-                new Catalog("Sourdough", "Traditional sourdough bread"),
-                new Catalog("Baguette", "Classic French baguette")
+                CatalogFactory.Create("Croissant", "Buttery French croissant"),
+                CatalogFactory.Create("Sourdough", "Traditional sourdough bread"),
+                CatalogFactory.Create("Baguette", "Classic French baguette")
             };
         }
 
-        // Generate test Events
         public static List<IEvent> CreateTestEvents()
         {
             return new List<IEvent>
             {
-                new Event("Sale", "Sold Croissant to Alice"),
-                new Event("Delivery", "New stock of Sourdough"),
-                new Event("Return", "Baguette returned by customer")
+                EventFactory.Create("Sale", "Sold Croissant to Alice"),
+                EventFactory.Create("Delivery", "New stock of Sourdough"),
+                EventFactory.Create("Return", "Baguette returned by customer")
             };
         }
     }

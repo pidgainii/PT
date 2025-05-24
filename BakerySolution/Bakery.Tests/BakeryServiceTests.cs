@@ -11,7 +11,7 @@ using Bakery.Logic.Interfaces;
 using Bakery.Logic.Services;
 
 
-namespace Bakery.Tests
+namespace Bakery.TestData
 {
     [TestClass]
     public class BakeryServiceTests
