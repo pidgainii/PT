@@ -14,7 +14,7 @@ namespace Bakery.TestData
         {
             var users = TestDataGenerator.CreateTestUsers();
             Assert.AreEqual(3, users.Count);
-            Assert.IsTrue(users.Exists(u => u.Name == "Alice"));
+            Assert.IsTrue(users.Exists(u => u.Name == "Joe"));
         }
 
         [TestMethod]

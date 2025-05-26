@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Bakery.Data.Entities;
+using Bakery.Data.Factories;
 using Bakery.Data.Interfaces;
 using Bakery.Logic.Interfaces;
 
@@ -14,28 +15,19 @@ namespace Bakery.Logic.Services
     public class BakeryService : IBakeryService
     {
         private readonly IDataRepository _repository;
-        private readonly ICatalogFactory _catalogFactory;
-        private readonly IStateFactory _stateFactory;
-        private readonly IEventFactory _eventFactory;
 
         public BakeryService(
-            IDataRepository repository,
-            ICatalogFactory catalogFactory,
-            IStateFactory stateFactory,
-            IEventFactory eventFactory)
+            IDataRepository repository)
         {
             _repository = repository;
-            _catalogFactory = catalogFactory;
-            _stateFactory = stateFactory;
-            _eventFactory = eventFactory;
         }
 
         public void AddProduct(string name, string description)
         {
-            ICatalog newProduct = _catalogFactory.Create(name, description);
+            ICatalog newProduct = CatalogFactory.Create(name, description);
             _repository.AddCatalogItem(newProduct);
 
-            IState newState = _stateFactory.Create($"Product added: {name}");
+            IState newState = StateFactory.Create($"Product added: {name}");
             _repository.AddState(newState);
         }
 
@@ -49,10 +41,10 @@ namespace Bakery.Logic.Services
 
             var product = catalog[productId];
 
-            IEvent saleEvent = _eventFactory.Create("Sale", $"Product {product.Name} sold to {customerName}");
+            IEvent saleEvent = EventFactory.Create("Sale", $"Product {product.Name} sold to {customerName}");
             _repository.AddEvent(saleEvent);
 
-            IState saleState = _stateFactory.Create($"Product {product.Name} sold.");
+            IState saleState = StateFactory.Create($"Product {product.Name} sold.");
             _repository.AddState(saleState);
         }
 
