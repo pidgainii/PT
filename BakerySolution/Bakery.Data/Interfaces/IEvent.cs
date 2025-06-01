@@ -8,7 +8,7 @@ namespace Bakery.Data.Interfaces
 {
     public interface IEvent
     {
-        Guid Id { get; }
+        int Id { get; }
         string Type { get; set; }
         DateTime Timestamp { get; }
         string Details { get; set; }

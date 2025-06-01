@@ -26,9 +26,9 @@ namespace Bakery.Data.Factories
 
     public static class StateFactory
     {
-        public static IState Create(string description)
+        public static IState Create(string description, int catalogId)
         {
-            return new State(description);
+            return new State(description, catalogId);
         }
     }
 

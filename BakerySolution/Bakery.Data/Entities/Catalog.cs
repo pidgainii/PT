@@ -10,14 +10,18 @@ namespace Bakery.Data.Entities
 {
     internal class Catalog : ICatalog
     {
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public List<IState> States { get; private set; }
 
+        // Constructor without ID, for creating new entries
         public Catalog(string name, string description)
         {
-            Id = Guid.NewGuid();
+            int timePart = DateTime.UtcNow.Ticks.GetHashCode();
+            int randomPart = new Random().Next(1000, 9999);
+
+            Id = (timePart ^ randomPart);
             Name = name;
             Description = description;
             States = new List<IState>();

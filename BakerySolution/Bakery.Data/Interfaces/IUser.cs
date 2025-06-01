@@ -8,7 +8,7 @@ namespace Bakery.Data.Interfaces
 {
     public interface IUser
     {
-        Guid Id { get; }
+        int Id { get; }
         string Name { get; set; }
         string Role { get; set; }
 

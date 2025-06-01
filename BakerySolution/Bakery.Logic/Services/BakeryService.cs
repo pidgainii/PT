@@ -12,6 +12,7 @@ using Bakery.Logic.Interfaces;
 
 namespace Bakery.Logic.Services
 {
+    
     public class BakeryService : IBakeryService
     {
         private readonly IDataRepository _repository;
@@ -27,7 +28,7 @@ namespace Bakery.Logic.Services
             ICatalog newProduct = CatalogFactory.Create(name, description);
             _repository.AddCatalogItem(newProduct);
 
-            IState newState = StateFactory.Create($"Product added: {name}");
+            IState newState = StateFactory.Create($"Product added: {name}", );
             _repository.AddState(newState);
         }
 
@@ -63,4 +64,5 @@ namespace Bakery.Logic.Services
             return _repository.GetStates();
         }
     }
+    
 }

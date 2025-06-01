@@ -12,7 +12,7 @@ namespace Bakery.Data.Interfaces
     public interface IDataRepository
     {
         List<IUser> GetUsers();
-        Dictionary<Guid, ICatalog> GetCatalog();
+        List<ICatalog> GetCatalog();
         List<IEvent> GetEvents();
         List<IState> GetStates();
 

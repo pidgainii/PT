@@ -1,26 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bakery.Data.Interfaces;
 
-using Bakery.Data.Interfaces;
-
-namespace Bakery.Data.Entities
+internal class State : IState
 {
-    internal class State : IState
-    {
-        public Guid Id { get; private set; }
-        public string Description { get; set; }
-        public DateTime UpdatedAt { get; private set; }
-        public List<IEvent> Events { get; private set; }
+    public int Id { get; private set; }
+    public string Description { get; set; }
+    public DateTime UpdatedAt { get; private set; }
+    public List<IEvent> Events { get; private set; }
+    public int CatalogId { get; set; }
 
-        public State(string description)
-        {
-            Id = Guid.NewGuid();
-            Description = description;
-            UpdatedAt = DateTime.UtcNow;
-            Events = new List<IEvent>();
-        }
+    public State(string description, int catalogId)
+    {
+        int timePart = DateTime.UtcNow.Ticks.GetHashCode();
+        int randomPart = new Random().Next(1000, 9999);
+        
+        Id = (timePart ^ randomPart);
+        Description = description;
+        UpdatedAt = DateTime.UtcNow;
+        CatalogId = catalogId;
+        Events = new List<IEvent>();
     }
 }

@@ -8,10 +8,12 @@ namespace Bakery.Data.Interfaces
 {
     public interface IState
     {
-        Guid Id { get; }
+        int Id { get; }
         string Description { get; set; }
         DateTime UpdatedAt { get; }
 
         List<IEvent> Events { get; }
+
+        int CatalogId { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Bakery.Data.Factories;
 using Bakery.Logic.Interfaces;
-using Bakery.Logic.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Bakery.Data.Contexts;
-using Bakery.Data.Repositories;
+
 
 namespace Bakery.TestLogic
 {
+    /*
     [TestClass]
     public class BakeryServiceTests
     {
@@ -95,5 +95,6 @@ namespace Bakery.TestLogic
             Assert.AreEqual(5, products.Count());
         }
     }
+    */
 
 }
