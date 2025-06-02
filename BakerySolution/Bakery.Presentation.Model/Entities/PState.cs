@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bakery.Presentation.Model.Entities
 {
-    internal class PState: IPState
+    public class PState: IPState
     {
         public int Id { get; private set; }
         public string Description { get; set; }

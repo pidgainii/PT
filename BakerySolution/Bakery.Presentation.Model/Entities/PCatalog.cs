@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Bakery.Presentation.Model.Entities
 {
-    internal class PCatalog: IPCatalog
+    public class PCatalog: IPCatalog
     {
         public int Id { get; private set; }
         public string Name { get; set; }

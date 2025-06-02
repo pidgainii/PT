@@ -22,11 +22,12 @@ namespace Bakery.Presentation.ViewModel
         /// <param name="dataLayer"></param>
         public MainViewModel(ModelSublayerAPI dataLayer)
         {
-            ShowTreeViewMainWindowCommend = new RelayCommand(ShowTreeViewMainWindow);
-            FetchDataCommend = new RelayCommand(() => DataLayer = dataLayer ?? ModelSublayerAPI.Create());
+            m_DataLayer = dataLayer ?? ModelSublayerAPI.Create(); // Asignamos, pero no cargamos todavía
+            FetchDataCommend = new RelayCommand(FetchData); // Nuevo método que carga los datos
             DisplayTextCommand = new RelayCommand(ShowPopupWindow, () => !string.IsNullOrEmpty(m_ActionText));
             m_ActionText = "Text to be displayed on the pop-up";
         }
+
 
         #endregion constructors
 
@@ -88,6 +89,12 @@ namespace Bakery.Presentation.ViewModel
             get; private set;
         }
 
+        private void FetchData()
+        {
+            Catalogs = new ObservableCollection<IPCatalog>(m_DataLayer.GetCatalogs);
+        }
+
+
         /// <summary>
         /// An implementation of the <seealso cref="ICommand"/> bonded with a button to show a new window contaminating a tree view control
         /// </summary>
@@ -130,11 +137,6 @@ namespace Bakery.Presentation.ViewModel
             MessageBoxShowDelegate(ActionText);
         }
 
-        private void ShowTreeViewMainWindow()
-        {
-            IWindow child = ChildWindow();
-            child.Show();
-        }
 
         #endregion Private stuff
     }
