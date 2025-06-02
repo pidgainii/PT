@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bakery.Presentation.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 namespace Bakery.Presentation.View
 {
     /// <summary>
-    /// Lógica de interacción para Master.xaml
+    /// Interaction logic for TreeViewMainWindow.xaml
     /// </summary>
-    public partial class Master : Window
+    public partial class TreeViewMainWindow : Window, IWindow
     {
-        public Master()
+        public TreeViewMainWindow()
         {
             InitializeComponent();
         }

@@ -8,61 +8,66 @@ using Bakery.Data.Entities;
 using Bakery.Data.Factories;
 using Bakery.Data.Interfaces;
 using Bakery.Logic.Interfaces;
+using Bakery.Logic.Entities;
+using System.ComponentModel;
+
 
 
 namespace Bakery.Logic.Services
 {
-    
-    public class BakeryService : IBakeryService
+    internal class BakeryService : IBakeryService
     {
         private readonly IDataRepository _repository;
 
-        public BakeryService(
-            IDataRepository repository)
+        public BakeryService(IDataRepository repository)
         {
             _repository = repository;
         }
 
-        public void AddProduct(string name, string description)
+        public void BakeProduct(string name, string description)
         {
             ICatalog newProduct = CatalogFactory.Create(name, description);
-            _repository.AddCatalogItem(newProduct);
+            _repository.AddCatalog(newProduct);
 
-            IState newState = StateFactory.Create($"Product added: {name}", );
+            IState newState = StateFactory.Create("baked", newProduct.Id);
             _repository.AddState(newState);
         }
 
-        public void RegisterSale(Guid productId, string customerName)
+        public void RegisterSale(int id)
         {
-            var catalog = _repository.GetCatalog();
-            if (!catalog.ContainsKey(productId))
+            List<ICatalog> catalog = _repository.GetCatalog();
+
+            ICatalog product = catalog.First(c => c.Id == id);
+            if (product == null)
             {
                 throw new InvalidOperationException("Product not found.");
             }
 
-            var product = catalog[productId];
-
-            IEvent saleEvent = EventFactory.Create("Sale", $"Product {product.Name} sold to {customerName}");
-            _repository.AddEvent(saleEvent);
-
-            IState saleState = StateFactory.Create($"Product {product.Name} sold.");
-            _repository.AddState(saleState);
+            IState state = StateFactory.Create("sold", id);
+            _repository.AddState(state);
         }
 
-        public IEnumerable<ICatalog> GetAvailableProducts()
+        public List<ILCatalog> GetAvailableProducts()
         {
-            return _repository.GetCatalog().Values;
+            List<ICatalog> catalogs = _repository.GetCatalog();
+            List<ILCatalog> lista = new List<ILCatalog>();
+            foreach (ICatalog catalog in catalogs)
+            {
+                lista.Add(new LCatalog(catalog));
+            }
+            return lista;
         }
 
-        public IEnumerable<IEvent> GetAllEvents()
+        public List<ILState> GetAllStates()
         {
-            return _repository.GetEvents();
-        }
-
-        public IEnumerable<IState> GetAllStates()
-        {
-            return _repository.GetStates();
+            List<IState> states = _repository.GetStates();
+            List<ILState> lista = new List<ILState>();
+            foreach (IState state in states)
+            {
+                lista.Add(new LState(state));
+            }
+            return lista;
         }
     }
-    
 }
+

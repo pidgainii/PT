@@ -11,14 +11,12 @@ namespace Bakery.Data.Interfaces
 {
     public interface IDataRepository
     {
-        List<IUser> GetUsers();
         List<ICatalog> GetCatalog();
-        List<IEvent> GetEvents();
         List<IState> GetStates();
 
-        void AddUser(IUser user);
-        void AddCatalogItem(ICatalog catalogItem);
-        void AddEvent(IEvent eventItem);
+        void AddCatalog(ICatalog catalog);
         void AddState(IState state);
+
+        List<ICatalog> GetCatalogByName(string name);
     }
 }

@@ -26,5 +26,14 @@ namespace Bakery.Data.Entities
             Description = description;
             States = new List<IState>();
         }
+
+        internal Catalog(int id, string name, string description)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            States = new List<IState>();
+        }
+
     }
 }

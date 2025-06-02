@@ -45,6 +45,7 @@ namespace Bakery.Data.Contexts
         }
 
 
+
         public IEnumerable<Catalog> FilterCatalogByName_ForEach(string name)
         {
             List<Catalog> _result = new List<Catalog>();
